@@ -59,15 +59,17 @@ public class BlockCreator : MonoBehaviour {
 
     public Vector3 GetRelativeBlock (float playerPosZ) {
         int index = 0;
-        Vector3 blockPos = blockPool[index].transform.position;
+        GameObject block = blockPool[index];
+        Vector3 blockPos = block.transform.position;
         if (blockPos.y < 0)
-            blockPos = blockPool[++index].transform.position;
+            block = blockPool[++index];
         float blockPosZ = blockPos.z;
         if (blockPosZ <= playerPosZ + minZDiff) {
             index += 2 * (Mathf.CeilToInt (playerPosZ - blockPosZ) + minZDiff);
-            blockPos = blockPool[index].transform.position;
+            block = blockPool[index];
         }
-        return blockPos;
+        Vector3 pos = block.GetComponent<BoxCollider> ().bounds.center - new Vector3 (0, block.GetComponent<BoxCollider> ().bounds.size.y / 2, 0);
+        return pos;
     }
 
     public void UpdateBlockPosition (int blockIndex) {

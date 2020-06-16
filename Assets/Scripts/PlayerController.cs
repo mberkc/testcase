@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour {
 
     void Start () {
         BlockCreator.GetSingleton ().Initialize (30, blockPrefabs, pointPrefab);
-        FindRelativePosForHingeJoint (new Vector3 (0, 10, 0));
+        FindRelativePosForHingeJoint (new Vector3 (0, 5, 0));
     }
 
     public void FindRelativePosForHingeJoint (Vector3 blockPosition) {
